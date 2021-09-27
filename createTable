@@ -1,0 +1,22 @@
+$createBusTableSql = "CREATE TABLE buses (
+    busid INT(4) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    busName VARCHAR(50) NOT NULL,
+    busNoPlate VARCHAR(10) NOT NULL,
+    noOfSeats INT(3) NOT NULL,
+    logBook VARCHAR(100) NOT NULL,
+    mod_date TIMESTAMP DEFAULT
+    CURRENT_TIMESTAMP 
+    ON UPDATE CURRENT_TIMESTAMP,
+    reg_date TIMESTAMP DEFAULT
+    CURRENT_TIMESTAMP,
+    saccoid INT(4) UNSIGNED, 
+    FOREIGN KEY (saccoid) REFERENCES sacco(saccoid) 
+    
+)";
+
+if ($connection ->query($createBusTableSql) === TRUE){
+    echo" Table Buses Created Successfully";
+} else {
+    echo "Error Creating Table:". $connection->error;
+}
+$connection ->close();
